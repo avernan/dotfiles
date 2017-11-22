@@ -2,6 +2,33 @@
 
 set number
 set backspace=indent,eol,start
+set history=1000
+set showcmd
+set showmode
+set autoread
+set hidden
+set autoindent
+set smartindent
+set smarttab
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set nowrap
+set foldmethod=marker
+set foldcolumn=3
+set scrolloff=6
+set sidescrolloff=10
+set sidescroll=1
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set confirm
+set wildmenu
+set wildmode=longest:full,full
+set wildignorecase
+set clipboard^=unnamedplus
 
 " }}}
 
