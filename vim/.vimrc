@@ -36,6 +36,15 @@ set modelines=1
 set spell
 set spelllang=en_gb
 
+" Show characters for tab, trailing space and extends/precedes when nowrap is on
+set list
+if (&termencoding ==# "utf-8" || &encoding ==# "utf-8")
+    let &listchars = "tab:\u21e5\u00b7,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
+    let &fillchars = "vert:\u259a,fold:\u00b7"
+else
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<
+endif
+
 
 if &term == "xterm-kitty"
     " Kitty has support for changing cursor shape through the following escape codes:
