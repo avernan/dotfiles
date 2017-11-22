@@ -33,9 +33,9 @@ set clipboard^=unnamedplus
 set modeline
 set modelines=1
 
-" }}}
+set spell
+set spelllang=en_gb
 
-" {{{ Terminal specific configuration
 
 if &term == "xterm-kitty"
     " Kitty has support for changing cursor shape through the following escape codes:
