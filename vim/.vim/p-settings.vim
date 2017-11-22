@@ -1,0 +1,5 @@
+" {{{ Graphics settings
+
+colorscheme apprentice
+
+" }}}
