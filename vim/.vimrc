@@ -30,6 +30,9 @@ set wildmode=longest:full,full
 set wildignorecase
 set clipboard^=unnamedplus
 
+set modeline
+set modelines=1
+
 " }}}
 
 " {{{ Terminal specific configuration
