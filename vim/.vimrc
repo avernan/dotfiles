@@ -69,6 +69,11 @@ if &term == "xterm-kitty"
     let &t_EI = "\<Esc>[1 q"
 endif
 
+" Set termguicolors for terminals that support it
+if has('termguicolors') && $COLORTERM == 'truecolor'
+    set termguicolors
+endif
+
 " }}}
 
 if filereadable(expand("~/.vim/plugins.vim"))
