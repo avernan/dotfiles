@@ -69,6 +69,13 @@ if &term == "xterm-kitty"
     let &t_EI = "\<Esc>[1 q"
 endif
 
+if &term == "xterm-kitty" && has('patch1358')
+    " Enable undercurl in terminal vim. As far as I know, this is only
+    " available in kitty at the moment
+    let &t_Cs = "\<Esc>[6m"
+    let &t_Ce = "\<Esc>[24m"
+endif
+
 " Set termguicolors for terminals that support it
 if has('termguicolors') && $COLORTERM == 'truecolor'
     set termguicolors
