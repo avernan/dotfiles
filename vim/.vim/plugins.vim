@@ -24,6 +24,11 @@ if filereadable(expand("~/.vim/p-movement.vim"))
     source ~/.vim/p-movement.vim
 endif
 
+" Language specific
+if filereadable(expand("~/.vim/p-ftype.vim"))
+    source ~/.vim/p-ftype.vim
+endif
+
 " External tools integration
 if filereadable(expand("~/.vim/p-tools.vim"))
     source ~/.vim/p-tools.vim
