@@ -117,3 +117,8 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Only load Liquid Prompt in interactive shells, not from a script or from scp
+if [[ $- = *i* && -f ${HOME}/source/liquidprompt/liquidprompt ]] ; then
+    source ~/source/liquidprompt/liquidprompt
+fi
