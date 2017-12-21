@@ -1,0 +1,12 @@
+declare -A pom
+pom[clean_code]="\ueacd"
+pom[pomodoro_done]="\ueace"
+pom[pomodoro_estimated]="\ueacf"
+pom[pomodoro_ticking]="\uead0"
+pom[pomodoro_squashed]="\uead1"
+pom[short_pause]="\uead2"
+pom[long_pause]="\uead3"
+pom[away]="\uead4"
+pom[pair_programming]="\uead5"
+pom[internal_interruption]="\uead6"
+pom[external_interruption]="\uead7"
