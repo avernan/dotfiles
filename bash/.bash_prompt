@@ -2,8 +2,12 @@
 # set -x
 
 declare -A ps1
+declare -A icon
+
+source ~/.local/bin/devicons.sh
 
 ps1[clear]=$(echo -e '\033[0m')
+icon[git]=$(echo -e ${dev[git_branch]})
 
 __git_info() {
     GIT_PS1_SHOWDIRTYSTATE=1
@@ -40,7 +44,7 @@ __prompt() {
     ps1[cpath]=$(echo -e '\033[1;94m')
 
     if [[ ${ps1_info[git_status]} == 1 ]] ; then
-        ps1[prompt]=""
+        ps1[prompt]=${icon[git]}
     else
         ps1[prompt]="$"
     fi
