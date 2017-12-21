@@ -18,7 +18,7 @@ __git_info() {
     local git_ps1
     if git_ps1=$(__git_ps1 '%s') && [[ -n $git_ps1 ]] ; then
         # Valid git repo. Set elements of array
-        ps1_info[git_status]=1
+        ps1_info[git]=1
         ps1_info[git_branch]=${git_ps1%% *}
         [[ $git_ps1 =~ \* ]] && ps1_info[git_dirty]=1
         [[ $git_ps1 =~ [^u]\+ ]] && ps1_info[git_staged]=1
@@ -29,7 +29,7 @@ __git_info() {
             ps1_info[git_remote]=${git_ps1##* }
         fi
     else
-        ps1_info[git_status]=0
+        ps1_info[git]=0
     fi
 }
 
@@ -43,7 +43,7 @@ __prompt() {
 
     ps1[cpath]=$(echo -e '\033[1;94m')
 
-    if [[ ${ps1_info[git_status]} == 1 ]] ; then
+    if [[ ${ps1_info[git]} == 1 ]] ; then
         ps1[prompt]=${icon[git]}
     else
         ps1[prompt]="$"
