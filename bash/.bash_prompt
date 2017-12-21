@@ -16,18 +16,30 @@ __git_info() {
     GIT_PS1_SHOWUPSTREAM="verbose name"
 
     local git_ps1
-    if git_ps1=$(__git_ps1 '%s') && [[ -n $git_ps1 ]] ; then
+    if git_ps1=$(__git_ps1) && [[ -n $git_ps1 ]] ; then
         # Valid git repo. Set elements of array
         ps1_info[git]=1
-        ps1_info[git_branch]=${git_ps1%% *}
-        [[ $git_ps1 =~ \* ]] && ps1_info[git_dirty]=1
-        [[ $git_ps1 =~ [^u]\+ ]] && ps1_info[git_staged]=1
-        [[ $git_ps1 =~  '$' ]] && ps1_info[git_stash]=1
-        [[ $git_ps1 =~  % ]] && ps1_info[git_untracked]=1
-        if [[ $git_ps1 =~ ' u' ]] ; then
-            # TODO: add commits behind/ahead of origin
-            ps1_info[git_remote]=${git_ps1##* }
-        fi
+        for word in ${git_ps1} ; do
+            case $word in
+                \(*)
+                    ps1_info[git_branch]=${word:1}
+                    ;;
+                [^a-zA-Z]*)
+                    [[ $word =~ '*' ]] && ps1_info[git_dirty]=1
+                    [[ $word =~ [^u]\+ ]] && ps1_info[git_staged]=1
+                    [[ $word =~  '$' ]] && ps1_info[git_stash]=1
+                    [[ $word =~  '%' ]] && ps1_info[git_untracked]=1
+                    ;;
+                u*)
+                    local sword=${word:1}
+                    ps1_info[git_ahead]=$(expr "$sword" : '\(\+[0-9]*\)')
+                    ps1_info[git_behind]=$(expr "$sword" : '.*\(\-[0-9]*\)')
+                    ;;
+                [a-zA-Z]*\))
+                    ps1_info[git_remote]=${word%/*}
+                    ;;
+            esac
+        done
     else
         ps1_info[git]=0
     fi
