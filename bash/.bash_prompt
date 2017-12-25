@@ -50,6 +50,9 @@ __git_info() {
 __prompt() {
     local __RET=$?
     declare -A ps1_info
+    if [[ $# == 1 ]] ; then
+        local __RET=$1
+    fi
 
     __git_info
 
