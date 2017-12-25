@@ -70,12 +70,22 @@ __prompt() {
 
 }
 
+__prompt_timing() {
+    local __RET=$?
+    if [[ -n $DEBUG ]] ; then
+        local time_start time_end time_used
+        time_start=$(date +%s.%N)
+        __prompt $__RET
+        time_end=$(date +%s.%N)
+        time_used=$(echo $time_end - $time_start | bc -l)
+        echo $time_used | tee -a .PS1_timing
+    else
+        __prompt $__RET
+    fi
+}
+
 # Time the execution of PROMPT_COMMAND?
-if [[ -n $DEBUG ]] ; then
-    PROMPT_COMMAND='time __prompt'
-else
-    PROMPT_COMMAND='__prompt'
-fi
+PROMPT_COMMAND='__prompt_timing'
 
 PS1=' \
 \[${ps1[cpath]}\]\W\[${ps1[clear]}\] \
