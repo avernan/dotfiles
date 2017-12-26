@@ -13,6 +13,9 @@ icon[keyboard]=$(echo -e ${md[keyboard]})
 
 declare -A ps1
 
+ps1[cpath]=${escapes[bold]}${escapes[fblB]}
+
+
 __git_info() {
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
@@ -59,8 +62,6 @@ __prompt_collect_info() {
     fi
 
     __git_info
-
-    ps1[cpath]=${escapes[bold]}${escapes[fblB]}
 
     if [[ ${ps1_info[git]} == 1 ]] ; then
         ps1[prompt]=${icon[git]}
