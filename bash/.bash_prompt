@@ -5,10 +5,12 @@ declare -A ps1
 declare -A icon
 
 source ~/.local/bin/devicons.sh
+source ~/.local/bin/materialdesign_icons.sh
 
 ps1[clear]=$(echo -e '\033[0m')
 
 icon[git]=$(echo -e ${dev[git_branch]})
+icon[keyboard]=$(echo -e ${md[keyboard]})
 
 __git_info() {
     GIT_PS1_SHOWDIRTYSTATE=1
@@ -66,7 +68,11 @@ __prompt_collect_info() {
     fi
     if [[ ${__RET} -ne 0 ]] ; then
         ps1[cprompt]=$(echo -e '\033[91m\033[1m')
-        ps1[return]="${__RET} "
+        if [[ ${__RET} == 130 ]] ; then
+            ps1[return]="${icon[keyboard]} "
+        else
+            ps1[return]="${__RET} "
+        fi
     else
         ps1[cprompt]=${ps1[clear]}
         ps1[return]=""
@@ -89,7 +95,7 @@ __prompt() {
     PS1L+="\[${ps1[cprompt]}\]${ps1[return]}\[${ps1[clear]}\]"
     PS1L+="\[${ps1[cprompt]}\]${ps1[prompt]}\[${ps1[clear]}\] "
 
-    PS1="$(__prompt_rhs "${PS1R}")${PS1L}"
+    PS1="\[$(__prompt_rhs "${PS1R}")\]${PS1L}"
 }
 
 __prompt_timing() {
