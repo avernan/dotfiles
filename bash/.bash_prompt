@@ -48,7 +48,7 @@ __git_info() {
 
 # TODO: battery
 
-__prompt() {
+__prompt_collect_info() {
     local __RET=$?
     declare -A ps1_info
     if [[ $# == 1 ]] ; then
@@ -72,6 +72,10 @@ __prompt() {
         ps1[return]=""
     fi
 
+}
+
+__prompt() {
+    __prompt_collect_info "$@"
 }
 
 __prompt_timing() {
