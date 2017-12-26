@@ -1,16 +1,17 @@
 # vim:filetype=sh
 # set -x
-
-declare -A ps1
-declare -A icon
-
 source ~/.local/bin/devicons.sh
 source ~/.local/bin/powerline_icons.sh
 source ~/.local/bin/materialdesign_icons.sh
 
+
+declare -A icon
+
 icon[git]=$(echo -e ${dev[git_branch]})
 icon[sep]=$(echo -e ${powerline[right_hard_divider]})
 icon[keyboard]=$(echo -e ${md[keyboard]})
+
+declare -A ps1
 
 __git_info() {
     GIT_PS1_SHOWDIRTYSTATE=1
