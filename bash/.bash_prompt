@@ -8,8 +8,6 @@ source ~/.local/bin/devicons.sh
 source ~/.local/bin/powerline_icons.sh
 source ~/.local/bin/materialdesign_icons.sh
 
-ps1[clear]=${escapes[clear]}
-
 icon[git]=$(echo -e ${dev[git_branch]})
 icon[sep]=$(echo -e ${powerline[right_hard_divider]})
 icon[keyboard]=$(echo -e ${md[keyboard]})
@@ -97,8 +95,8 @@ __prompt() {
 
     # Set LHS prompt.
     PS1L=" "
-    PS1L+="\[${ps1[cpath]}\]\W\[${ps1[clear]} \]"
-    PS1L+="\[${ps1[creturn]}\]${ps1[return]}\[${ps1[clear]}\]"
+    PS1L+="\[${ps1[cpath]}\]\W\[${escapes[clear]} \]"
+    PS1L+="\[${ps1[creturn]}\]${ps1[return]}\[${escapes[clear]}\]"
     PS1L+="${ps1[prompt]} "
 
     PS1="\[$(__prompt_rhs "${PS1R}")\]${PS1L}"
