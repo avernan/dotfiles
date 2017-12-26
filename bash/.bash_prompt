@@ -76,6 +76,20 @@ __prompt_collect_info() {
 
 __prompt() {
     __prompt_collect_info "$@"
+
+    local PS1L PS1R
+
+    # Set RHS prompt. This can include escape sequences.
+    PS1R=""
+    PS1R+="${ps1[cpath]}Hello${ps1[clear]}"
+
+    # Set LHS prompt.
+    PS1L=" "
+    PS1L+="\[${ps1[cpath]}\]\W\[${ps1[clear]} \]"
+    PS1L+="\[${ps1[cprompt]}\]${ps1[return]}\[${ps1[clear]}\]"
+    PS1L+="\[${ps1[cprompt]}\]${ps1[prompt]}\[${ps1[clear]}\] "
+
+    PS1="$(__prompt_rhs "${PS1R}")${PS1L}"
 }
 
 __prompt_timing() {
