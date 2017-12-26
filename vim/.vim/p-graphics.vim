@@ -14,6 +14,9 @@ Plug 'tomasr/molokai'
 Plug 'w0ng/vim-hybrid'
 Plug 'zeis/vim-kolor'
 Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'nightsense/simplifysimplify'
+Plug 'hzchirs/vim-material'
+Plug 'sjl/badwolf'
 
 " }}}
 
