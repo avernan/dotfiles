@@ -95,9 +95,12 @@ __prompt_timing() {
 # Time the execution of PROMPT_COMMAND?
 PROMPT_COMMAND='__prompt_timing'
 
-PS1=' \
-\[${ps1[cpath]}\]\W\[${ps1[clear]}\] \
-\[${ps1[cprompt]}\]${ps1[return]}\[${ps1[clear]}\]\
-\[${ps1[cprompt]}\]${ps1[prompt]}\[${ps1[clear]}\]\
- '
+__prompt_rhs() {
+    [[ $# != 1 ]] && return
 
+    local rhs=$1
+    local rhs_printable=${rhs//\[+([0-9]|;)m/}
+    local length=${#rhs_printable}
+
+    echo -e "$(tput sc; tput cuf $((COLUMNS - length)))${rhs}$(tput rc)"
+}
