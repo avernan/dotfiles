@@ -7,7 +7,7 @@ declare -A icon
 source ~/.local/bin/devicons.sh
 source ~/.local/bin/materialdesign_icons.sh
 
-ps1[clear]=$(echo -e '\033[0m')
+ps1[clear]=${escapes[clear]}
 
 icon[git]=$(echo -e ${dev[git_branch]})
 icon[keyboard]=$(echo -e ${md[keyboard]})
@@ -59,23 +59,24 @@ __prompt_collect_info() {
 
     __git_info
 
-    ps1[cpath]=$(echo -e '\033[1;94m')
+    ps1[cpath]=${escapes[bold]}${escapes[fblB]}
 
     if [[ ${ps1_info[git]} == 1 ]] ; then
         ps1[prompt]=${icon[git]}
     else
         ps1[prompt]="$"
     fi
+
     if [[ ${__RET} -ne 0 ]] ; then
-        ps1[cprompt]=$(echo -e '\033[91m\033[1m')
+        ps1[creturn]=${escapes[bold]}${escapes[freB]}
         if [[ ${__RET} == 130 ]] ; then
             ps1[return]="${icon[keyboard]} "
         else
             ps1[return]="${__RET} "
         fi
     else
-        ps1[cprompt]=${ps1[clear]}
-        ps1[return]=""
+        ps1[creturn]=
+        ps1[return]=
     fi
 
 }
@@ -92,8 +93,8 @@ __prompt() {
     # Set LHS prompt.
     PS1L=" "
     PS1L+="\[${ps1[cpath]}\]\W\[${ps1[clear]} \]"
-    PS1L+="\[${ps1[cprompt]}\]${ps1[return]}\[${ps1[clear]}\]"
-    PS1L+="\[${ps1[cprompt]}\]${ps1[prompt]}\[${ps1[clear]}\] "
+    PS1L+="\[${ps1[creturn]}\]${ps1[return]}\[${ps1[clear]}\]"
+    PS1L+="${ps1[prompt]} "
 
     PS1="\[$(__prompt_rhs "${PS1R}")\]${PS1L}"
 }
