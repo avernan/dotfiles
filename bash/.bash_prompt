@@ -5,11 +5,13 @@ declare -A ps1
 declare -A icon
 
 source ~/.local/bin/devicons.sh
+source ~/.local/bin/powerline_icons.sh
 source ~/.local/bin/materialdesign_icons.sh
 
 ps1[clear]=${escapes[clear]}
 
 icon[git]=$(echo -e ${dev[git_branch]})
+icon[sep]=$(echo -e ${powerline[right_hard_divider]})
 icon[keyboard]=$(echo -e ${md[keyboard]})
 
 __git_info() {
@@ -63,8 +65,10 @@ __prompt_collect_info() {
 
     if [[ ${ps1_info[git]} == 1 ]] ; then
         ps1[prompt]=${icon[git]}
+        ps1[git_branch]=${ps1_info[git_branch]}
     else
         ps1[prompt]="$"
+        ps1[git_branch]=
     fi
 
     if [[ ${__RET} -ne 0 ]] ; then
@@ -88,7 +92,8 @@ __prompt() {
 
     # Set RHS prompt. This can include escape sequences.
     PS1R=""
-    PS1R+="${ps1[cpath]}Hello${ps1[clear]}"
+    PS1R+="${escapes[fgrB]}${icon[sep]}${escapes[clear]}"
+    PS1R+="${escapes[bgrB]}${escapes[fre]}${ps1[git_branch]}${escapes[clear]}"
 
     # Set LHS prompt.
     PS1L=" "
