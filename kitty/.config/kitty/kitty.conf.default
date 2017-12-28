@@ -28,49 +28,9 @@ font_size_delta 2
 # 100% to reduce line height (but this might cause rendering artifacts).
 adjust_line_height 0
 
+# Foreground, background and cursor colour
+# 8 terminal colours in dull/bright variants
 # {{{ Define colours
-
-# Foreground and background
-foreground       #BCBCBC
-background       #262626
-
-# Cursor colour
-cursor           #cccccc
-
-# The 16 terminal colours as dull/bright pairs
-
-# Black
-color0   #1C1C1C
-color8   #444444
-
-# Red
-color1   #AF5F5F
-color9   #FF8700
-
-# Green
-color2   #5F875F
-color10  #87AF87
-
-# Yellow
-color3   #87875F
-color11  #FFFFAF
-
-# Blue
-color4   #5F87AF
-color12  #8FAFD7
-
-# Magenta
-color5   #5F5F87
-color13  #8787AF
-
-# Cyan
-color6   #5F8787
-color14  #5FAFAF
-
-# White
-color7   #6C6C6C
-color15  #FFFFFF
-
 # }}}
 
 # The foreground for selections

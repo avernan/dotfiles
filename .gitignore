@@ -1,2 +1,5 @@
 # Exclude Vim's swap files
 **/*.swp
+
+# kitty.conf is dynamically generated from `setup` utility
+kitty/.config/kitty/kitty.conf
