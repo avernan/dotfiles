@@ -36,3 +36,18 @@ escapes=(\
     [bcyB]=$(echo -e '\033[106m') \
     [bwhB]=$(echo -e '\033[107m') \
 )
+
+__true_colors() {
+    [[ $# != 4 ]] && return
+    local fgbg
+    case $1 in
+        fg)
+            fgbg=38
+            ;;
+        bg)
+            fgbg=48
+            ;;
+    esac
+
+    echo -e "\033[${fgbg};2;$2;$3;$4m"
+}
