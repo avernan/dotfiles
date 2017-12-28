@@ -38,16 +38,22 @@ escapes=(\
 )
 
 __true_colors() {
-    [[ $# != 4 ]] && return
     local fgbg
-    case $1 in
-        fg)
-            fgbg=38
-            ;;
-        bg)
-            fgbg=48
-            ;;
-    esac
+    if [[ $# == 4 ]] ; then
+        case $1 in
+            fg)
+                fgbg=38
+                ;;
+            bg)
+                fgbg=48
+                ;;
+        esac
+        shift
+    elif [[ $# == 3 ]] ; then
+        fgbg=38
+    else
+        return
+    fi
 
-    echo -e "\033[${fgbg};2;$2;$3;$4m"
+    echo -e "\033[${fgbg};2;$1;$2;$3m"
 }
