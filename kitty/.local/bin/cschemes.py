@@ -17,29 +17,43 @@ def hex_rgb(hexcolor):
         raise ValueError
     return tuple(int(hexcolor[i:i+2], 16) for i in (1, 3, 5))
 
+def print_line(scheme_name=None, colors=None, name_width=15, color_width=9, lines=2, header=False):
+    if header:
+        pr = ["\33[1m{0:^{w}.{w}}\33m".format("Colour Scheme", w=name_width)]
+        pr += ["\33[1m{0:^{w}.{w}}\33m".format(cn, w=color_width) for cn in color_names]
+        pr = "".join(pr) + "\n"
+    else:
+        name = ["\33[1m{0:<{w}.{w}}\33m".format(" " + scheme_name, w=name_width)]
+        pr = []
+        for color in colors:
+            pr.append(
+                    "\33[48;2;{c[0]};{c[1]};{c[2]}m{f:<{w}.{w}}\33[m".format(
+                        c=hex_rgb(color), w=color_width, f="")
+                    )
+        pr = "\n".join(
+                ["".join(name + pr)]+
+                (lines-1)*["".join([name_width*" "] + pr)])
+    return pr
 
-if __name__ == '__main__':
-    dname = sys.argv[1]
-
+def read_schemes(path):
     colors = {}
-    for root, path, fnames in os.walk(dname):
+    for root, path, fnames in os.walk(path):
         fnames = [f.split('.') for f in fnames]
         for name, *ext in fnames:
-            if ext[-1] != "Kcolor":
-                continue
-            colors[name] = read_file(name, root=root)
+            colors[name] = (read_file(name, root=root) if ext[-1] == "Kcolor" else None)
+
+    return root, {k:v for k,v in colors.items() if v}
+
+
+if __name__ == '__main__':
+
+    dname = sys.argv[1]
+    root, colors = read_schemes(dname)
 
     scheme_names = sorted(list(colors.keys()))
 
-    line = ["\33[1m{:^9}\33m".format(cn) for cn in color_names]
-    line.insert(0, "\33[1m{:^15.15}\33m".format("Color Scheme"))
-    print("\n","".join(line),"\n")
-
+    print(print_line(header=True))
     for name in scheme_names:
-        line_c = [("\33[48;2;{col[0]};{col[1]};{col[2]}m" + 9*" " + "\33[m").
-                format(col=hex_rgb(v)) for v in colors[name]]
-        line = ["\33[1m{:<15.15}\33m".format(" " + name)]
-        print("".join([15*" "] + line_c))
-        print("".join(line + line_c))
-
+        if colors[name]:
+            print(print_line(name, colors[name]))
 
