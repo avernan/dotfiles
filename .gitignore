@@ -3,3 +3,9 @@
 
 # kitty.conf is dynamically generated from `setup` utility
 kitty/.config/kitty/kitty.conf
+
+# fish "universal" variables are stored in a file that
+# dynamically includes the hostname of local machine.
+# Ignore all "fishd.*" files except for "fishd.HOSTNAME"
+fish/.config/fish/fishd.*
+!fish/.config/fish/fishd.HOSTNAME
