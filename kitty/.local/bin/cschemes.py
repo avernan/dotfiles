@@ -2,7 +2,10 @@
 import os
 import sys
 
-color_names = ['fgr', 'cur', 'bgr', 'c00', 'c01', 'c02', 'c03', 'c04', 'c05',
+# TODO: Remove requirements for Kcolor files to be ordered in the same way
+#   as this array.
+
+color_names = ['bgr', 'cur', 'fgr', 'c00', 'c01', 'c02', 'c03', 'c04', 'c05',
          'c06', 'c07', 'c08', 'c09', 'c10', 'c11', 'c12', 'c13', 'c14', 'c15']
 
 def read_file(scheme_name, extension='.Kcolor', root=""):
