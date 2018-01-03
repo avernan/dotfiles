@@ -1,0 +1,24 @@
+
+# Badwolf - adapted from sjl/badwolf for Vim
+# https://github.com/sjl/badwolf
+# https://gist.github.com/rainerborene/7388594
+
+background   #070707
+cursor       #f6f4ee
+foreground   #f6f4ee
+color0       #080808
+color1       #e12832
+color2       #79db07
+color3       #f96808
+color4       #18aefe
+color5       #fb3a7f
+color6       #67d9f0
+color7       #f2f2f2
+color8       #4c4c4c
+color9       #e12832
+color10      #90ff0a
+color11      #f9dc27
+color12      #37c2ff
+color13      #fb0061
+color14      #1bc4ef
+color15      #ffffff
