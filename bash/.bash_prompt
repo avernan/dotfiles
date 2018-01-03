@@ -1,20 +1,31 @@
 # vim:filetype=sh
 # set -x
+
+# File that manages the creation of the nice and informative™ prompt
+
+# Load icon sets used for prompt
 source ~/.local/bin/devicons.sh
 source ~/.local/bin/powerline_icons.sh
 source ~/.local/bin/materialdesign_icons.sh
 
+# Define array of icons used in prompt
 declare -A ps1_icon
 
 ps1_icon[git]=$(echo -e ${dev[git_branch]})
 ps1_icon[sep]=$(echo -e ${powerline[right_hard_divider]})
 ps1_icon[keyboard]=$(echo -e ${md[keyboard]})
 
+# Define array of values and escape sequences used in prompt.
+#   Static values are defined here and can be used to choose a style
 declare -A ps1
 
+# Entries starting with c* identify colours
 ps1[cpath]=${escapes[bold]}${escapes[fblB]}
 
+# Set PROMPT_COMMAND so that timing can be dynamically (un)set
+PROMPT_COMMAND='__prompt_timing'
 
+# Fetch git-related info and store them in the ps1_info array
 __git_info() {
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
@@ -23,8 +34,8 @@ __git_info() {
 
     local git_ps1
     if git_ps1=$(__git_ps1) && [[ -n $git_ps1 ]] ; then
-        # Valid git repo. Set elements of array
         ps1_info[git]=1
+        # Parse the output of __git_ps1 command
         for word in ${git_ps1} ; do
             case $word in
                 \(*)
@@ -53,12 +64,11 @@ __git_info() {
 
 # TODO: battery
 
+# Fetch info from the different available modules. Set dynamic values of the ps1 array
 __prompt_collect_info() {
-    local __RET=$?
+    [[ $# != 1 ]] && return
+
     declare -A ps1_info
-    if [[ $# == 1 ]] ; then
-        local __RET=$1
-    fi
 
     __git_info
 
@@ -70,12 +80,12 @@ __prompt_collect_info() {
         ps1[git_branch]=
     fi
 
-    if [[ ${__RET} -ne 0 ]] ; then
+    if [[ $1 -ne 0 ]] ; then
         ps1[creturn]=${escapes[bold]}${escapes[freB]}
-        if [[ ${__RET} == 130 ]] ; then
+        if [[ $1 == 130 ]] ; then
             ps1[return]="${ps1_icon[keyboard]} "
         else
-            ps1[return]="${__RET} "
+            ps1[return]="$1 "
         fi
     else
         ps1[creturn]=
@@ -84,25 +94,35 @@ __prompt_collect_info() {
 
 }
 
+# Build the LHS and RHS prompts and join them.
+#       For the moment this is the section to change in order
+#       to modify which parts are included in the prompt
 __prompt() {
     __prompt_collect_info "$@"
 
     local PS1L PS1R
 
     # Set RHS prompt. This can include escape sequences.
+    #   No need to use \[ and \] as the $PS1R variable will be
+    #   entirely wrapped in \[ \].
     PS1R=""
     PS1R+="${escapes[fgrB]}${ps1_icon[sep]}${escapes[clear]}"
     PS1R+="${escapes[bgrB]}${escapes[fre]}${ps1[git_branch]}${escapes[clear]}"
+    PS1R+="$(__true_colors 'fg' 38 38 38)${escapes[bgrB]}${ps1_icon[sep]}${escapes[clear]}"
 
     # Set LHS prompt.
+    #   Wrap non-printable characters in \[ and \]
     PS1L=" "
     PS1L+="\[${ps1[cpath]}\]\W\[${escapes[clear]} \]"
     PS1L+="\[${ps1[creturn]}\]${ps1[return]}\[${escapes[clear]}\]"
     PS1L+="${ps1[prompt]} "
 
+    # Join PS1L and PS1R through the use of the auxiliary function __prompt_rhs
     PS1="\[$(__prompt_rhs "${PS1R}")\]${PS1L}"
 }
 
+# Wrapper of the prompt building function (__prompt). This enable to dynamically
+#   switch the timing of prompt creation by setting DEBUG=1
 __prompt_timing() {
     local __RET=$?
     if [[ -n $DEBUG ]] ; then
@@ -117,9 +137,9 @@ __prompt_timing() {
     fi
 }
 
-# Time the execution of PROMPT_COMMAND?
-PROMPT_COMMAND='__prompt_timing'
-
+# Strip the RHS part of the prompt ($1, has to be passed as single argument)
+#   of all escape sequences. Calculate length of printable characters. Align
+#   text to the right.
 __prompt_rhs() {
     [[ $# != 1 ]] && return
 
