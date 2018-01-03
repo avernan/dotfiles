@@ -4,12 +4,11 @@ source ~/.local/bin/devicons.sh
 source ~/.local/bin/powerline_icons.sh
 source ~/.local/bin/materialdesign_icons.sh
 
+declare -A ps1_icon
 
-declare -A icon
-
-icon[git]=$(echo -e ${dev[git_branch]})
-icon[sep]=$(echo -e ${powerline[right_hard_divider]})
-icon[keyboard]=$(echo -e ${md[keyboard]})
+ps1_icon[git]=$(echo -e ${dev[git_branch]})
+ps1_icon[sep]=$(echo -e ${powerline[right_hard_divider]})
+ps1_icon[keyboard]=$(echo -e ${md[keyboard]})
 
 declare -A ps1
 
@@ -64,7 +63,7 @@ __prompt_collect_info() {
     __git_info
 
     if [[ ${ps1_info[git]} == 1 ]] ; then
-        ps1[prompt]=${icon[git]}
+        ps1[prompt]=${ps1_icon[git]}
         ps1[git_branch]=${ps1_info[git_branch]}
     else
         ps1[prompt]="$"
@@ -74,7 +73,7 @@ __prompt_collect_info() {
     if [[ ${__RET} -ne 0 ]] ; then
         ps1[creturn]=${escapes[bold]}${escapes[freB]}
         if [[ ${__RET} == 130 ]] ; then
-            ps1[return]="${icon[keyboard]} "
+            ps1[return]="${ps1_icon[keyboard]} "
         else
             ps1[return]="${__RET} "
         fi
@@ -92,7 +91,7 @@ __prompt() {
 
     # Set RHS prompt. This can include escape sequences.
     PS1R=""
-    PS1R+="${escapes[fgrB]}${icon[sep]}${escapes[clear]}"
+    PS1R+="${escapes[fgrB]}${ps1_icon[sep]}${escapes[clear]}"
     PS1R+="${escapes[bgrB]}${escapes[fre]}${ps1[git_branch]}${escapes[clear]}"
 
     # Set LHS prompt.
