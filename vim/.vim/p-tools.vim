@@ -7,3 +7,8 @@
 " exploring commits and their content...
 " }}}
 Plug 'tpope/vim-fugitive'
+
+" {{{ linediff.vim
+" A vim plugin to perform diffs on blocks of code
+" }}}
+Plug 'AndrewRadev/linediff.vim'
