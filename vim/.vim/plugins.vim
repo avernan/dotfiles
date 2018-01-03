@@ -14,6 +14,11 @@ endif
 
 call plug#begin("~/.vim/plugged")
 
+" Support additional languages
+if filereadable(expand("~/.vim/p-language.vim"))
+    source ~/.vim/p-language.vim
+endif
+
 " Graphics
 if filereadable(expand("~/.vim/p-graphics.vim"))
     source ~/.vim/p-graphics.vim
