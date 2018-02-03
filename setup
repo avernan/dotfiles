@@ -14,11 +14,11 @@ case $1 in
             # find kitty/.config/kitty/ -name "*.Kcolor" -printf "\t* %f\n"
         fi
 
-        stow --ignore=".*\.[XK]color" --ignore=".*\.default" kitty
+        stow --ignore="\.[XK]color" --ignore="\.default" kitty
         ;;
     fish)
         ln fish/.config/fish/fishd.HOSTNAME fish/.config/fish/fishd.$(hostname)
-        stow --ignore=".*\.HOSTNAME" fish
+        stow --ignore="\.HOSTNAME" fish
         ;;
     *)
         stow $1
