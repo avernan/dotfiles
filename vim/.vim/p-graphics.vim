@@ -1,3 +1,5 @@
+" Graphical plugins
+
 " {{{ Color schemes
 
 Plug 'xero/sourcerer.vim'
