@@ -12,3 +12,8 @@ Plug 'tpope/vim-fugitive'
 " A vim plugin to perform diffs on blocks of code
 " }}}
 Plug 'AndrewRadev/linediff.vim'
+
+" {{{ ale
+" Asynchronous Lint Engine
+" }}}
+Plug 'w0rp/ale'
