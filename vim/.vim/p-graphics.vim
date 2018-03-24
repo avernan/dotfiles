@@ -22,6 +22,8 @@ Plug 'sjl/badwolf'
 
 " }}}
 
+" {{{ vim-css-color
 " Display colorcodes with the color they represent
 " e.g. #992323 #000000 #451234 and so on
+" }}}
 Plug 'ap/vim-css-color'

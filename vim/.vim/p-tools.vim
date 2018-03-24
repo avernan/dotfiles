@@ -17,3 +17,8 @@ Plug 'AndrewRadev/linediff.vim'
 " Asynchronous Lint Engine
 " }}}
 Plug 'w0rp/ale'
+
+" {{{ denite
+" Dark powered asynchronous unite all interfaces for Neovim/Vim8
+" }}}
+Plug 'Shougo/denite.nvim'
