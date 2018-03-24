@@ -3,18 +3,18 @@
 case $1 in
     color)
         defconf='kitty/.config/kitty/kitty.conf.default'
-        cfname="kitty/.config/kitty/$2.Kcolor" 
+        cfname="kitty/colors.ignore/$2.Kcolor"
         conf='kitty/.config/kitty/kitty.conf'
         if [[ -f $cfname ]] ; then
             echo "Loading colour scheme: $2"
             sed -e "/^# {{{ Define colours/r $cfname" $defconf > $conf
         else
-            kitty/.local/bin/cschemes.py kitty/.config/kitty/
+            kitty/.local/bin/cschemes.py kitty/colors.ignore/
             # echo -e "Invalid colour scheme name. Please chose from the following:\n"
             # find kitty/.config/kitty/ -name "*.Kcolor" -printf "\t* %f\n"
         fi
 
-        stow --ignore="\.[XK]color" --ignore="\.default" kitty
+        stow --ignore="ignore" --ignore="default" kitty
         ;;
     fish)
         ln fish/.config/fish/fishd.HOSTNAME fish/.config/fish/fishd.$(hostname)
