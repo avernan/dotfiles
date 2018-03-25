@@ -6,11 +6,37 @@ howto() {
     exit 1
 }
 
-main() {
-    [[ -d $1 ]] || howto
-    pkgname=$1
-    host=$(hostname)
+set_colors_kitty() {
+    cfname="kitty/colors.ignore/$2.Kcolor"
+    conf='kitty/.config/kitty/kitty.conf'
+    if [[ -f $cfname ]] ; then
+        echo "Loading colour scheme: $2"
+        sed -E -e "/^# \{\{\{ Define colours/,/^# \}\}\}/ {
+            /\{\{\{/r $cfname
+            /\}\}\}|\{\{\{/ ! d
+    }" "$conf" > temp && mv temp "$conf"
+    else
+        kitty/.local/bin/cschemes.py kitty/colors.ignore/
+    fi
+}
 
+set_colors() {
+    set_colors_kitty "$@"
+}
+
+main() {
+    pkgname=$1
+    case $pkgname in
+        color)
+            set_colors "$@"
+            exit 0
+            ;;
+        *)
+            [[ -d $1 ]] || howto
+            ;;
+    esac
+
+    host=$(hostname)
     defaults=$(find "$pkgname" -iname "*\.default")
 
     for default in $defaults ; do
@@ -20,8 +46,12 @@ main() {
             IFS=" ="
             while read -r option ; do
                 optionarr=($option)
-                sed -Ei "s/^${optionarr[0]}\s+.*\$/$option/" "$fname"
+                sed -Ei "s/^\<${optionarr[0]}\>.*\$/$option/" "$fname"
             done < "${fname}.${host}.ignore"
+        fi
+        if [[ $pkgname =~ ^kitty/? ]] ; then
+            cscheme=($(grep -E "^\<color_scheme\>" "$fname"))
+            set_colors_kitty "$pkgname" "${cscheme[1]}" "$fname"
         fi
     done
 

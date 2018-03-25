@@ -30,32 +30,9 @@ adjust_line_height 0
 # unmodified line height. You can use negative pixels or percentages less than
 # 100% to reduce line height (but this might cause rendering artifacts).
 
-# Foreground, background and cursor colour
-# 8 terminal colours in dull/bright variants
 # {{{ Define colours
 
-# Sourcerer - by Xero Harrison
-# http://sourcerer.xero.nu
-
-background   #222222
-cursor       #C2C2B0
-foreground   #C2C2B0
-color0       #111111
-color1       #AA4450
-color2       #719611
-color3       #CC8800
-color4       #6688AA
-color5       #8F6F8F
-color6       #528B8B
-color7       #D3D3D3
-color8       #181818
-color9       #FF6A6A
-color10      #B1D631
-color11      #FF9800
-color12      #90B0D1
-color13      #8181A6
-color14      #87CEEB
-color15      #C1CDC1
+color_scheme sourcerer
 
 # }}}
 
