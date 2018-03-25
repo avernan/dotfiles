@@ -63,23 +63,38 @@ wheel_scroll_multiplier 5.0
 
 # }}}
 
+# {{{ Mouse
 
-# The interval between successive clicks to detect double/triple clicks (in seconds)
-click_interval 0.5
+open_url_modifiers ctrl+shift
+open_url_with default
 
-# Characters considered part of a word when double clicking. In addition to these characters
-# any character that is marked as an alpha-numeric character in the unicode
-# database will be matched.
+copy_on_select no
+rectangle_select_modifiers ctrl+alt
+
 select_by_word_characters :@-./_~?&=%+#
 
-# Hide mouse cursor after the specified number of seconds of the mouse not being used. Set to
-# zero to disable mouse cursor hiding.
-mouse_hide_wait 0
+click_interval 0.5
 
-# Set the active window to the window under the mouse when moving the mouse around
+mouse_hide_wait 0
 focus_follows_mouse no
 
-# The enabled window layouts. A comma separated list of layout names. The special value * means
+# }}}
+
+# {{{ Performance tuning
+
+repaint_delay    10
+input_delay 3
+sync_to_monitor yes
+
+# }}}
+
+# Window layout {{{
+
+remember_window_size   yes
+
+enabled_layouts tall,grid
+
+# }}}
 # all layouts. The first listed layout will be used as the startup layout.
 # For a list of available layouts, see the file layouts.py
 enabled_layouts *
