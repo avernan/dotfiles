@@ -20,6 +20,15 @@ box_drawing_scale 0.001, 1, 1.5, 2
 
 # }}} Fonts
 
+# {{{ Cursor
+
+cursor           #cccccc
+cursor_shape     block
+cursor_blink_interval     1.0
+cursor_stop_blinking_after 10.0
+
+# }}}
+
 # {{{ Decoration colours
 
 selection_foreground #000000
@@ -31,14 +40,6 @@ url_color #0087BD
 # {{{ Define colours
 
 color_scheme sourcerer
-
-# }}}
-
-# {{{ Cursor
-
-cursor_shape     block
-cursor_blink_interval     1.0
-cursor_stop_blinking_after 10.0
 
 # }}}
 
