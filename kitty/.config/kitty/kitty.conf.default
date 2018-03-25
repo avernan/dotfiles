@@ -43,20 +43,14 @@ color_scheme sourcerer
 
 # }}}
 
-# Number of lines of history to keep in memory for scrolling back
+# {{{ Scrollback
+
 scrollback_lines 2000
-
-# Program with which to view scrollback in a new window. The scrollback buffer is passed as
-# STDIN to this program. If you change it, make sure the program you use can
-# handle ANSI escape sequences for colors and text formatting.
 scrollback_pager less +G -R
-
-# When viewing scrollback in a new window, put it in a new tab as well
-scrollback_in_new_tab no
-
-# Wheel scroll multiplier (modify the amount scrolled by the mouse wheel). Use negative
-# numbers to change scroll direction.
 wheel_scroll_multiplier 5.0
+
+# }}}
+
 
 # The interval between successive clicks to detect double/triple clicks (in seconds)
 click_interval 0.5
