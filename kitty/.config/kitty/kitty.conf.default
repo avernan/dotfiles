@@ -11,13 +11,13 @@ adjust_line_height 0
 
 # }}} Fonts
 
+# {{{ Decoration colours
 
+selection_foreground #000000
+selection_background #FFFACD
+url_color #0087BD
 
-# Adjust the line height. 
-# You can use either numbers, which are interpreted as pixels or percentages
-# (number followed by %), which are interpreted as percentages of the
-# unmodified line height. You can use negative pixels or percentages less than
-# 100% to reduce line height (but this might cause rendering artifacts).
+# }}}
 
 # {{{ Define colours
 
@@ -25,14 +25,6 @@ color_scheme sourcerer
 
 # }}}
 
-# The foreground for selections
-selection_foreground #000000
-
-# The background for selections
-selection_background #FFFACD
-
-# The color for highlighting URLs on mouse-over
-url_color #0087BD
 
 
 # The cursor shape can be one of (block, beam, underline)
