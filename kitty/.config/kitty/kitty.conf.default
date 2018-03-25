@@ -1,6 +1,5 @@
 # vim:fileencoding=utf-8:ft=conf
 
-
 # {{{ Fonts
 
 font_family Anonymous Pro
@@ -253,7 +252,6 @@ map ctrl+shift+e        run_simple_kitten text url_hints
 # }}}
 
 # }}}
-
 
 # OS specific tweaks {{{
 
