@@ -29,11 +29,23 @@ cursor_stop_blinking_after 10.0
 
 # }}}
 
-# {{{ Decoration colours
+# {{{ Decorations
 
 selection_foreground #000000
 selection_background #FFFACD
+
+window_border_width 1
+window_margin_width 0
+window_padding_width 0
+active_border_color #00ff00
+inactive_border_color #cccccc
+inactive_text_alpha 0.8
+
 url_color #0087BD
+url_style curly
+
+visual_bell_duration 0.05
+enable_audio_bell yes
 
 # }}}
 
