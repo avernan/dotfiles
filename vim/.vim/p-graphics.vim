@@ -27,3 +27,8 @@ Plug 'sjl/badwolf'
 " e.g. #992323 #000000 #451234 and so on
 " }}}
 Plug 'ap/vim-css-color'
+
+" {{{ lightline.vim
+" A light and configurable statusline/tabline plugin for Vim
+" }}}
+Plug 'itchyny/lightline.vim'

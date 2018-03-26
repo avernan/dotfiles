@@ -30,6 +30,9 @@ set wildmode=longest:full,full
 set wildignorecase
 set clipboard^=unnamedplus
 
+set laststatus=2
+set noshowmode
+
 set modeline
 set modelines=1
 
