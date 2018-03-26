@@ -91,7 +91,7 @@ sync_to_monitor yes
 
 remember_window_size   yes
 
-enabled_layouts tall,grid
+enabled_layouts tall,grid,vertical
 
 # }}}
 
