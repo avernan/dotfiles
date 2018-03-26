@@ -17,4 +17,8 @@ if &term =~ '256color\|kitty'
     set t_ut=
 endif
 
+let g:lightline = {
+            \ 'colorscheme': 'jellybeans',
+            \ }
+
 " }}}
