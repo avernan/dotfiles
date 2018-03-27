@@ -58,7 +58,7 @@ endif
 
 " {{{ Terminal specific configuration
 
-if &term == "xterm-kitty"
+if &term == 'xterm-kitty' || $VTE_VERSION !=? ''
     " Kitty has support for changing cursor shape through the following escape codes:
     " '<Esc>[<N> q' where <N> is one of 1 (block), 3 (underline) and 5 (block)
     " {{{ Notes
@@ -67,9 +67,11 @@ if &term == "xterm-kitty"
     " https://github.com/kovidgoyal/kitty/blob/4dc6918b13f8acdf50d13de5c903407f67b7d5cd/kitty/control-codes.h#L247
     " https://github.com/kovidgoyal/kitty/blob/4dc6918b13f8acdf50d13de5c903407f67b7d5cd/kitty/screen.c#L1126
     " }}}
-    let &t_SI = "\<Esc>[5 q"
-    let &t_SR = "\<Esc>[1 q"
-    let &t_EI = "\<Esc>[1 q"
+    " Similar support has been added to VTE based terminals. TODO: check
+    " initial version supporting it
+    let &t_SI = "\<Esc>[6 q"
+    let &t_SR = "\<Esc>[4 q"
+    let &t_EI = "\<Esc>[2 q"
 endif
 
 if &term == "xterm-kitty" && has('patch1358')
