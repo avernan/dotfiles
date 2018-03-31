@@ -2,8 +2,26 @@
 STOWOPT="--ignore=ignore --ignore=default"
 
 howto() {
-    echo "${0#*/}: Unknown package."
-    exit 1
+    [[ $# != 0 ]] && echo "$@" >&2
+    echo -e "\n  Dotfiles setup:\n
+\tsetup [OPTION] PACKAGENAME\n
+  Description:\n
+\tSet up dotfiles and symbolic links. PACKAGENAME should be the name of a
+\tsubdirectory, with the exception of the packages listed below under
+\tSpecial Packages.\n
+  Options:\n
+\t-D remove/unlink mode\n
+  Special Packages:\n
+\t+ color
+\t\t Takes one more argument. Sets the color scheme for the Kitty terminal.
+\t\t If not argument is given shows a preview of available schemes.
+"
+    [[ $# != 0 ]] && exit 1
+    exit 0
+}
+
+remove() {
+    stow -D "$1"
 }
 
 set_colors_kitty() {
@@ -25,6 +43,24 @@ set_colors() {
 }
 
 main() {
+    while getopts "Dh" opt ; do
+        case $opt in
+            D)
+                local remove_package=1
+                ;;
+            h)
+                howto
+                ;;
+            \?)
+                howto "Invalid option: -$OPTARG"
+                ;;
+            :)
+                howto "Option -$OPTARG requires an argument."
+                ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+
     pkgname=$1
     case $pkgname in
         color)
@@ -32,9 +68,14 @@ main() {
             exit 0
             ;;
         *)
-            [[ -d $1 ]] || howto
+            [[ -d $1 ]] || howto "Invalid package name"
             ;;
     esac
+
+    if [[ $remove_package ]]; then
+        remove "$pkgname"
+        exit 0
+    fi
 
     host=$(hostname)
     defaults=$(find "$pkgname" -iname "*\.default")
