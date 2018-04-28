@@ -22,3 +22,8 @@ Plug 'w0rp/ale'
 " Dark powered asynchronous unite all interfaces for Neovim/Vim8
 " }}}
 Plug 'Shougo/denite.nvim'
+
+" {{{ YouCompleteMe
+" A code-completion engine for Vim
+" }}}
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
