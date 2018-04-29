@@ -3,7 +3,7 @@
 " Also create a few useful directories.
 
 if empty(glob("~/.vim/autoload/plug.vim"))
-    silent call system('mkdir -p ~/.vim/{autoload,bundle,undo,swaps}')
+    silent call system('mkdir -p ~/.vim/undo')
     silent call system("curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
     execute "source ~/.vim/autoload/plug.vim"
     augroup plugsetup
