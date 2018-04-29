@@ -1,12 +1,5 @@
 " {{{ Graphics settings
 
-augroup apprentice#tweaks
-    autocmd!
-
-    autocmd ColorScheme apprentice highlight Comment cterm=italic
-    autocmd ColorScheme apprentice highlight SpellBad cterm=bold,undercurl
-augroup end
-
 colorscheme apprentice
 
 if &term =~ '256color\|kitty'
