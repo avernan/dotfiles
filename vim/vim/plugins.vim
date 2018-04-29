@@ -1,6 +1,8 @@
 " ########## Vim-plug ##########
 " Install vim-plug if not already installed, then run plugin installation.
 " Also create a few useful directories.
+" This is partially redundant with what happens through the dotrop dotfile
+" management script.
 
 if empty(glob("~/.vim/autoload/plug.vim"))
     silent call system('mkdir -p ~/.vim/undo')

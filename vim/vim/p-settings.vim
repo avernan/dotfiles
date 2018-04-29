@@ -1,6 +1,10 @@
 " {{{ Graphics settings
 
-colorscheme apprentice
+try
+	colorscheme apprentice
+catch
+    colorscheme elflord
+endtry
 
 if &term =~ '256color\|kitty'
     " Disable Background Color Erase (BCE) so that color schemes render

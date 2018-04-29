@@ -2,6 +2,9 @@
 **/*.swp
 
 # Exclude plug.vim
+vim/vim/*/
+vim/vim/.*
+!vim/vim/autoload/*
 vim/vim/autoload/plug.vim
 
 # kitty.conf is dynamically generated from `setup` utility
@@ -12,3 +15,5 @@ kitty/.config/kitty/kitty.conf
 # Ignore all "fishd.*" files except for "fishd.HOSTNAME"
 fish/.config/fish/fishd.*
 !fish/.config/fish/fishd.HOSTNAME
+
+dotdrop.sh
