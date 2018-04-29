@@ -12,8 +12,8 @@ dotfiles:
     src: vim/vimrc
     link: true
     actions:
-            - vim-plug
-            - vim-plug-install
+      - vim-plug
+      - vim-plug-install
   f_bashrc:
     dst: ~/.bashrc
     src: bash/bashrc
@@ -33,18 +33,18 @@ dotfiles:
 profiles:
   Benjen:
     dotfiles:
-    include:
-    - vim
+      include:
+        - vim
   vim:
     dotfiles:
-    - f_vimrc
-    - d_vim
-  bashL
+      - f_vimrc
+      - d_vim
+  bash:
     dotfiles:
-    - f_bashrc
-    - f_bash_colors
-    - f_bash_logout
-    - f_bash_prompt
+      - f_bashrc
+      - f_bash_colors
+      - f_bash_logout
+      - f_bash_prompt
 actions:
-  vim-plug: "mkdir -p ~/.vim/{autoload,undo} && curl -sfLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 2>&1 >/dev/null"
+  vim-plug: "mkdir -p ~/.vim/autoload ~/.vim/undo && curl -sfLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 2>&1 >/dev/null"
   vim-plug-install: vim +'PlugInstall --sync' +qall
