@@ -2,7 +2,7 @@
 **/*.swp
 
 # Exclude plug.vim
-vim/.vim/autoload/plug.vim
+vim/vim/autoload/plug.vim
 
 # kitty.conf is dynamically generated from `setup` utility
 kitty/.config/kitty/kitty.conf
