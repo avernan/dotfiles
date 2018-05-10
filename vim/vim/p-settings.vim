@@ -19,3 +19,12 @@ let g:lightline = {
             \ }
 
 " }}}
+
+" {{{ Linters settings
+
+let g:ale_linters = {
+            \ 'c': ['clangtidy'],
+            \ 'cpp': ['clangtidy']
+            \}
+
+" }}}
