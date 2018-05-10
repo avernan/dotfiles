@@ -28,3 +28,10 @@ let g:ale_linters = {
             \}
 
 " }}}
+
+" {{{ Snippets settings
+
+let g:UltiSnipsExpandTrigger = "<C-space>"
+let g:UltiSnipsListSnippets = "<C-z>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"

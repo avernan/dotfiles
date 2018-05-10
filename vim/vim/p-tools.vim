@@ -27,3 +27,9 @@ Plug 'Shougo/denite.nvim'
 " A code-completion engine for Vim
 " }}}
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+
+" {{{ UltiSnips
+" UltiSnips - The ultimate snippet solution for Vim.
+" }}}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
