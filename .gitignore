@@ -17,3 +17,5 @@ fish/.config/fish/fishd.*
 !fish/.config/fish/fishd.HOSTNAME
 
 dotdrop.sh
+
+venv
