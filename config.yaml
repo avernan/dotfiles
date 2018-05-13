@@ -3,6 +3,7 @@ config:
   create: true
   dotpath: .
 dotfiles:
+# {{{ vim
   d_vim:
     dst: ~/.vim
     src: vim/vim
@@ -14,6 +15,8 @@ dotfiles:
     actions:
       - vim-plug
       - vim-plug-install
+# }}}
+# {{{ bash
   f_bashrc:
     dst: ~/.bashrc
     src: bash/bashrc
@@ -30,14 +33,17 @@ dotfiles:
     dst: ~/.bash_prompt
     src: bash/bash_prompt
     link: true
+# }}}
+# {{{ fish
   d_fish:
     dst: ~/.config/fish
     src: fish/config/fish
+# }}}
 profiles:
   Benjen:
     dotfiles:
-      include:
-        - vim
+    include:
+      - vim
   vim:
     dotfiles:
       - f_vimrc
