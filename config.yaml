@@ -35,22 +35,32 @@ dotfiles:
     link: true
 # }}}
 # {{{ fish
-  d_fish:
+  fish:
     dst: ~/.config/fish
     src: fish/config/fish
     link: true
 # }}}
+# {{{ kitty
+  kitty:
+    dst: ~/.config/kitty
+    src: ./kitty/config/kitty
+    link: true
+# }}}
+
 profiles:
   Benjen:
     dotfiles:
+      - fish
+      - kitty
     include:
       - vim
-      - fish
   Brandon:
     dotfiles:
+      - fish
+      - kitty
     include:
       - vim
-      - fish
+      - bash
   vim:
     dotfiles:
       - f_vimrc
@@ -61,9 +71,6 @@ profiles:
       - f_bash_colors
       - f_bash_logout
       - f_bash_prompt
-  fish:
-    dotfiles:
-      - d_fish
 actions:
   vim-plug: "mkdir -p ~/.vim/autoload ~/.vim/undo && curl -sfLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 2>&1 >/dev/null"
   vim-plug-install: vim +'PlugInstall --sync' +qall
