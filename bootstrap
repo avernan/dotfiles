@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [[ ! -d dotdrop ]] ; then
+    git submodule init
+    git submodule update
+    cp dotdrop/dotdrop.sh .
+    chmod +x dotdrop.sh
+fi
+
+if [[ ! -d venv ]] ; then
+    mkdir venv
+    virtualenv -p /usr/bin/python3 venv
+    source venv/bin/activate
+    pip3 install -r dotdrop/requirements.txt
+    ./dotdrop.sh
+    deactivate
+fi
+
