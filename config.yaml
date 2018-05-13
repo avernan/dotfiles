@@ -44,6 +44,10 @@ profiles:
     dotfiles:
     include:
       - vim
+  Brandon:
+    dotfiles:
+    include:
+      - vim
   vim:
     dotfiles:
       - f_vimrc
