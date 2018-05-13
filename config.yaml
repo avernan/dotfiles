@@ -38,16 +38,19 @@ dotfiles:
   d_fish:
     dst: ~/.config/fish
     src: fish/config/fish
+    link: true
 # }}}
 profiles:
   Benjen:
     dotfiles:
     include:
       - vim
+      - fish
   Brandon:
     dotfiles:
     include:
       - vim
+      - fish
   vim:
     dotfiles:
       - f_vimrc
